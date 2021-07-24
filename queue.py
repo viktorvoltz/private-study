@@ -16,13 +16,13 @@ class ArrayQueue:
 
     def first(self):
         if self.is_empty():
-            raise Empty('Queue is Empty')
+            raise IndexError('Queue is Empty')
         return self._data[self._front]
 
     def dequeue(self):
 
         if self.is_empty():
-            raise Empty('Queue is empty')
+            raise IndexError('Queue is empty')
         answer = self._data[self._front]
         self._data[self._front] = None
         self.front = (self._front + 1)% len(self._data)
