@@ -12,7 +12,7 @@ class _DoublyLinkedBase:
         self._header = self._Node(None, None, None)
         self._trailer = self._Node(None, None, None)
         self._header._next = self._trailer
-        self._trailer = self._header
+        self._trailer._prev = self._header
         self._size = 0
 
     def __len__(self):
@@ -54,10 +54,10 @@ class LinkedDeque(_DoublyLinkedBase):
         return self._trailer._prev._element
     
     def insert_first(self, e):
-        self._insert_between(e, self._header, self._trailer)
+        return self._insert_between(e, self._header, self._header._next)
 
     def insert_last(self, e):
-        self._insert_between(e, self._trailer._prev, self._trailer)
+        return self._insert_between(e, self._trailer._prev, self._trailer)
 
     def delete_first(self):
         if self.is_empty():
@@ -71,12 +71,14 @@ class LinkedDeque(_DoublyLinkedBase):
 
 #testing
 LD = LinkedDeque()
-LD.insert_first('nonso')  #insert first element
-LD.insert_last('chinyeaka') 
-print(LD.first())       # print last element
+firstnode = LD.insert_first('nonso')  #insert first node
+anothernode = LD.insert_last('chinyeaka')
+LD.insert_last('joy')
+LD.insert_last('polycarp')
+print(LD.first())       # print first node element
 print(LD.last())
-first = LD.insert_first('nonso') # assign node 'nonso'
-last = LD.insert_last('chinyeaka')
-LD._insert_between('victor', first, last) # insert 'victor' between two nodes
-LD.delete_last()
+# assign node 'nonso'
+
+print('new last, ', LD.last())
+LD._insert_between('victor', firstnode, anothernode) # insert 'victor' between two nodes
 print(LD.last())
