@@ -1,12 +1,12 @@
 class _DoublyLinkedBase:
 
     class _Node:
-        __slots__ = 'elements', '_prev', '_next'
+        __slots__ = 'element', '_prev', '_next'
 
         def __init__(self, element, prev, next):
-            self.element = element
-            self.prev = prev
-            self.next = next
+            self._element = element
+            self._prev = prev
+            self._next = next
 
     def __init__(self):
         self._header = self._Node(None, None, None)
@@ -68,3 +68,15 @@ class LinkedDeque(_DoublyLinkedBase):
         if self.is_empty():
             raise IndexError('Deque is Empty')
         return self._delete_node(self._trailer._prev)
+
+#testing
+LD = LinkedDeque()
+LD.insert_first('nonso')  #insert first element
+LD.insert_last('chinyeaka') 
+print(LD.first())       # print last element
+print(LD.last())
+first = LD.insert_first('nonso') # assign node 'nonso'
+last = LD.insert_last('chinyeaka')
+LD._insert_between('victor', first, last) # insert 'victor' between two nodes
+LD.delete_last()
+print(LD.last())
