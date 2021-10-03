@@ -69,6 +69,26 @@ class LinkedDeque(_DoublyLinkedBase):
             raise IndexError('Deque is Empty')
         return self._delete_node(self._trailer._prev)
 
+
+
+class PositionalList(_DoublyLinkedBase):
+
+    class position:
+        def __init__(self, container, node):
+            self._container = container
+            self._node = node
+
+        def element(self):
+            return self._node._element
+
+        def __eq__(self, other):
+            return type(other) is type(self) and other._node is self._node
+
+        def __ne__(self, other):
+            return not(self == other)
+
+
+
 #testing
 LD = LinkedDeque()
 firstnode = LD.insert_first('nonso')  #insert first node
