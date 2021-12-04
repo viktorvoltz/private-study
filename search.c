@@ -1,4 +1,6 @@
 #include<stdio.h>
+
+//assuming the emlements of the array are in increasing order!!
 int main(){
     int c, first, last, middle, n, search, array[100];
 
